@@ -1,5 +1,7 @@
 #!/bin/bash
 
+OUTPUT_PATH = "$HOME/Godot/dist"
+
 # Temporary path where project will be cloned to before being built
 TEMP_PATH="/tmp"
 
@@ -90,6 +92,13 @@ echo "{\"version\": \"$COMMIT_HASH\"}" > "$CLONED_PROJECT_PATH/version_info.json
 
 # Run the app at GODOT_PATH passing CLONED_PROJECT_PATH as the first parameter, with options --export-release, --headless
 
-"$GODOT_PATH" --path "$CLONED_PROJECT_PATH"  --headless --export-release "Windows Desktop" "/home/carles/Godot/dist/GodotDistTestProject/"
+WINDOWS_PATH = "$OUTPUT_PATH/SAFE_PROJECT_NAME/$COMMIT_HASH/windows/full"
+WINDOWS_DEMO_PATH = "$OUTPUT_PATH/SAFE_PROJECT_NAME/$COMMIT_HASH/windows/demo"
+
+mkdir -p "$WINDOWS_PATH"
+mkdir -p "$WINDOWS_DEMO_PATH"
+
+"$GODOT_PATH" --path "$CLONED_PROJECT_PATH" --headless --export-release "Windows (full)" "$WINDOWS_PATH"
+"$GODOT_PATH" --path "$CLONED_PROJECT_PATH" --headless --export-release "Windows (demo)" "$WINDOWS_DEMO_PATH"
 
 echo "Build completed successfully."
