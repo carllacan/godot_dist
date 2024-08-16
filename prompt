@@ -1,0 +1,39 @@
+create a bash script that performs the following steps, without using sudo:
+* defines a local variable called TEMP_PATH, which for default is /tmp
+* put this comment above that variable: "Temporary path where project will be cloned to before being built"
+
+* take a local path as an argument, and store it in variable PROJECT_PATH
+* explain in a comment that this is the path where the .godot file is to be found
+* if PROJECT_PATH is not an absolute path, make it absolute, assuming it is relative to the path where this script is being executed from
+
+* check that there is a *.godot file in PROJECT_PATH
+
+* takes an optional second parameter called REPO_REL_PATH, which by default is empty
+* explain in a comment that this is the path where the git repo is to be found, relative to PROJECT_PATH
+* if this optional parameter is not present, and if godot_dist.json is present at PROJECT_PATH, read file godot_dist.json at PROJECT_PATH and load parameter "repo_path", if present, to variable REPO_REL_PATH
+* if the optional parameter is not present and the "repo_path" parameter could not be read, set REPO_REL_PATH to ".." by default
+* create a new variable called REPO_PATH, which is the concatenations of the paths in PROJECT_PATH and REPO_REL_PATH
+
+* check that there is a git repo in REPO_PATH
+* check that there is at least a commit in that repo
+
+* create a variable called PROJECT_REL_PATH, and make it so that it is a relative path from REPO_PATH to PROJECT_PATH
+
+* obtain the project name from the *.godot file in PROJECT_PATH and store it in PROJECT_NAME, assuming the name is stored in a line like this one: config/name="Hexis"
+* create a variable SAFE_PROJECT_NAME which is like PROJECT_NAME but safe to be used in paths, i.e. all spaces and non-allowed characters have been removed
+
+* read file godot_dist.json at PROJECT_PATH and load parameter "godot_path" to variable GODOT_PATH
+* if the file does not exist or does not contain that parameter then set GODOT_PATH to "godot"
+
+* print "Building project [project name] from [project path] using GODOT_PATH" to the console
+
+* create directory TEMP_PATH/godot_dist if it doesn't already exist
+
+* go to TEMP_PATH/godot_dist, create a directory named SAFE_PROJECT_NAME. if there already is one delete it before creating it anew
+* clone the latest commit from the repo in folder PROJECT_PATH to folder TEMP_PATH/godot_dist/SAFE_PROJECT_NAME
+* define a variable called CLONED_PROJECT_PATH with value TEMP_PATH/godot_dist/SAFE_PROJECT_NAME/PROJECT_REL_PATH
+* check that a .godot file exists at CLONED_PROJECT_PATH
+* create a text file in that path named version_info.json (or edit it if it already exists) and set variable "version" to the commit hash
+
+* make sure GODOT_PATH points to an executable file
+* run the app at GODOT_PATH passing CLONED_PROJECT_PATH as the first parameter, with options --export-release, --headless
