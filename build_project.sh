@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OUTPUT_PATH = "$HOME/Godot/dist"
+OUTPUT_PATH="$HOME/Godot/dist"
 
 # Temporary path where project will be cloned to before being built
 TEMP_PATH="/tmp"
@@ -90,15 +90,28 @@ fi
 COMMIT_HASH=$(git -C "$REPO_PATH" rev-parse HEAD)
 echo "{\"version\": \"$COMMIT_HASH\"}" > "$CLONED_PROJECT_PATH/version_info.json"
 
-# Run the app at GODOT_PATH passing CLONED_PROJECT_PATH as the first parameter, with options --export-release, --headless
+# Export all versions
 
-WINDOWS_PATH = "$OUTPUT_PATH/SAFE_PROJECT_NAME/$COMMIT_HASH/windows/full"
-WINDOWS_DEMO_PATH = "$OUTPUT_PATH/SAFE_PROJECT_NAME/$COMMIT_HASH/windows/demo"
+LINUX_OUTPUT_DIR="$OUTPUT_PATH/$SAFE_PROJECT_NAME/$COMMIT_HASH/linux/full"
+LINUX_PATH="$LINUX_OUTPUT_DIR/${SAFE_PROJECT_NAME}_full.x86_64"
+mkdir -p "$LINUX_OUTPUT_DIR"
+echo "Exporting full Linux version to $LINUX_PATH"
+"$GODOT_PATH" --path "$CLONED_PROJECT_PATH" --headless --export-release "Linux" "$LINUX_PATH"
 
-mkdir -p "$WINDOWS_PATH"
-mkdir -p "$WINDOWS_DEMO_PATH"
+LINUX_DEMO_OUTPUT_DIR="$OUTPUT_PATH/$SAFE_PROJECT_NAME/$COMMIT_HASH/linux/demo"
+LINUX_DEMO_PATH="$LINUX_DEMO_OUTPUT_DIR/${SAFE_PROJECT_NAME}_demo.x86_64"
+mkdir -p "$LINUX_DEMO_OUTPUT_DIR"
+echo "Exporting Demo Linux version to $LINUX_DEMO_PATH"
+"$GODOT_PATH" --path "$CLONED_PROJECT_PATH" --headless --export-release "Linux Demo" "$LINUX_DEMO_PATH"
 
-"$GODOT_PATH" --path "$CLONED_PROJECT_PATH" --headless --export-release "Windows (full)" "$WINDOWS_PATH"
-"$GODOT_PATH" --path "$CLONED_PROJECT_PATH" --headless --export-release "Windows (demo)" "$WINDOWS_DEMO_PATH"
+WINDOWS_OUTPUT_DIR="$OUTPUT_PATH/$SAFE_PROJECT_NAME/$COMMIT_HASH/windows/full"
+WINDOWS_PATH="$WINDOWS_OUTPUT_DIR/${SAFE_PROJECT_NAME}_full.exe"
+mkdir -p "$WINDOWS_OUTPUT_DIR"
+echo "Exporting full Windows version to $WINDOWS_PATH"
+"$GODOT_PATH" --path "$CLONED_PROJECT_PATH" --headless --export-release "Windows" "$WINDOWS_PATH"
 
-echo "Build completed successfully."
+WINDOWS_DEMO_OUTPUT_DIR="$OUTPUT_PATH/$SAFE_PROJECT_NAME/$COMMIT_HASH/windows/demo"
+WINDOWS_DEMO_PATH="$WINDOWS_DEMO_OUTPUT_DIR/${SAFE_PROJECT_NAME}_demo.exe"
+mkdir -p "$WINDOWS_DEMO_OUTPUT_DIR"
+echo "Exporting Demo Windows version to $WINDOWS_DEMO_PATH"
+"$GODOT_PATH" --path "$CLONED_PROJECT_PATH" --headless --export-release "Windows Demo" "$WINDOWS_DEMO_PATH"
