@@ -1,0 +1,18 @@
+- assumes:
+	- [ ] templates in ~/Godot/GodotX/Godot_vX.Y.Z/templates
+	- [ ] a file named export_info.json in the root of the project
+- [ ] a dist folder in ~/Godot/dist
+- [ ] a export script that, given the path to a project,
+	- [ ] clones the last commit to dist/temp/project_name/source
+		- is there a way to only copy the last commit tagged a certain way?
+		- git clone -b TAG_NAME only moves the head
+	- [ ] writes to export_info.json
+		- [ ] the version (the commit hash) 
+		- [ ] the daytime
+	- [ ] exports the game to ~Godot/dist/project_name/output, where there are folders windows and linux containg each demo and full
+	- [ ] deletes temp/project_name/source
+- [ ] a publish script that, given the path to a project,
+	- [ ] runs the export script
+	- [ ] takes what is in the dist subfolders and uploads it to steam
+	- [ ] deletes everything in temp/project_name
+	- [ ] logs the upload in the root of the project directory
