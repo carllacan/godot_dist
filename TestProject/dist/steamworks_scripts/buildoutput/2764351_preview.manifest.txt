@@ -1,0 +1,30 @@
+Content Manifest for Depot 2764351 
+
+Manifest ID / date     : 0 / Thu Jan  1 01:00:00 1970 
+Total number of files  : 20 
+Total number of chunks : 0 
+Total bytes on disk    : 0 
+Total bytes compressed : 0 
+CRC raw / encrypted    : 0x0 / 0x0 
+
+          Size Chunks File SHA                                 Flags Name
+             0      0 0000000000000000000000000000000000000000    40 linux
+             0      0 0000000000000000000000000000000000000000    40 linux\controller_config
+         1,737      1 65c1cabbc7106d4645f713405e05b36971e2df40     0 linux\controller_config\game_actions_2764350.vdf
+             0      0 0000000000000000000000000000000000000000    40 linux\demo
+    61,549,424     60 690ad48b52219b9a834ff5a21d97ddc57e1cd690     0 linux\demo\Hexis_demo.x86_64
+             0      0 0000000000000000000000000000000000000000    40 linux\full
+    61,549,392     60 fb58f6e54cc569d7f5284562e0a981a2aeb867cf     0 linux\full\Hexis.x86_64
+    61,549,392     60 fb58f6e54cc569d7f5284562e0a981a2aeb867cf     0 linux\Hexis.x86_64
+    61,549,424     60 690ad48b52219b9a834ff5a21d97ddc57e1cd690     0 linux\Hexis_demo.x86_64
+    10,848,280     11 21e27529e022c12758b29babc6c408a4ce62b6a6     0 linux\libgodotsteam.so
+       395,696      1 6168abb266945c10c017568d014dc1abf3f623ae     0 linux\libsteam_api.so
+             0      0 0000000000000000000000000000000000000000    40 windows
+             0      0 0000000000000000000000000000000000000000    40 windows\demo
+    51,901,728     51 daa9e17253133a1e815227b39d3245a8b769341f     0 windows\demo\Hexis_demo.exe
+             0      0 0000000000000000000000000000000000000000    40 windows\full
+    51,901,696     51 5143cc07ca0f7bb8a6d182adc0503783a26e9551     0 windows\full\Hexis.exe
+     1,179,136      2 16f79124019635e19afbbf77afeb06388ca7dc83     0 windows\godotsteam.dll
+    52,605,920     52 8549b86d6570bb4c363fa31635fe7355ef76630a     0 windows\Hexis.exe
+    52,605,952     52 ab87e76ec07b2c343f3706b11d5ec75962838f5a     0 windows\Hexis_demo.exe
+       301,928      1 0c67ff54afa0e53f82659abeeea0d8ab1dcad1ed     0 windows\steam_api64.dll

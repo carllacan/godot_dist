@@ -1,0 +1,5 @@
+[2024-08-16 20:35:21]: Starting AppID 2764350 build (flags 0x0).
+[2024-08-16 20:35:21]: Building depot 2764351...
+
+[2024-08-16 20:35:23]: ERROR! Failed to commit build for AppID 2764350 : Failure
+

@@ -1,0 +1,20 @@
+"AppBuild"
+{
+	"AppID" "2000"
+	"Desc" "[BUILD_DESCRIPTION]" // internal description for this build
+
+	"SetLive" "beta" // set this build live on beta branch AlphaTest
+	"ContentRoot" "..\..\dist\" // content root folder relative to this script file
+
+	//"Preview" "1" // make this a preview build only, nothing is uploaded
+	//"Local" "..\..\ContentServer\htdocs" // put content on local content server instead of uploading to Steam
+	//"BuildOutput" "D:\build_output\" // put build cache and log files on different drive for better performance
+
+	"Depots"
+	{
+		// file mapping instructions for each depot are in separate script files
+		"2001" "depot_build_2001.vdf" // Linux
+		"2002" "depot_build_2002.vdf" // Windows
+		"2003" "depot_build_2003.vdf" // Steamdeck
+	}
+}

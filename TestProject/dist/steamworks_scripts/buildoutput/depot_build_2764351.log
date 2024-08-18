@@ -1,0 +1,14 @@
+[2024-08-16 20:35:21]: Starting build for depot 2764351, content path is "/home/carles/Godot/dist/Hexis/last_build/", build flags 0x0
+[2024-08-16 20:35:21]: Building file listing for depot 2764351 ...
+[2024-08-16 20:35:21]: Found 0 files for mapping: /home/carles/Godot/dist/Hexis/last_build/linux full -> .
+[2024-08-16 20:35:21]: Adding empty folder for empty depot 2764351
+[2024-08-16 20:35:22]: Building depot 2764351, baseline manifest 1543478918431630108 (3 files)
+[2024-08-16 20:35:22]: Found 0 chunks ( 72 used previously ) for depot 2764351, took 0 minutes, 0 seconds
+[2024-08-16 20:35:22]: Changes to baseline manifest 1543478918431630108 :
+[2024-08-16 20:35:22]: Added  : "EmptySteamDepot" 0 kB ,Flags: 64
+[2024-08-16 20:35:22]: Removed: Hexis.x86_64 (60057 kB)
+[2024-08-16 20:35:22]: Removed: libgodotsteam.so (10595 kB)
+[2024-08-16 20:35:22]: Removed: libsteam_api.so (387 kB)
+[2024-08-16 20:35:22]: Summary: 1 files added, 0 files changed, 3 files removed
+[2024-08-16 20:35:22]: Uploading new manifest to 208.78.164.201:80 (handle 9951248173376855455, 410 bytes).
+[2024-08-16 20:35:23]: Success! New manifestID 1049697419315193957 created and 0 new chunks uploaded.
