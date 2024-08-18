@@ -108,55 +108,55 @@ fi
 
 # Create or edit a text file named version_info.json and set the "version" to the commit hash
 COMMIT_HASH=$(git -C "$REPO_PATH" rev-parse HEAD)
-echo "{\"commit\": \"$COMMIT_HASH\"}" > "$CLONED_PROJECT_PATH/version_info.json"
+echo "{\"commit\": \"$COMMIT_HASH\"}" > "$CLONED_PROJECT_PATH/dist/version_info.json"
 
 ### Export all versions
 
 # Print building project information
+echo "###"
 echo "Building project $PROJECT_NAME from $CLONED_PROJECT_PATH using $GODOT_PATH"
+echo "###"
 
 echo "Making sure resources are imported"
 $GODOT_PATH --path "$CLONED_PROJECT_PATH" --import --quit --verbose
 
 # Export Linux full version
 echo "###"
-echo "Exporting full Linux version to $LINUX_PATH"
+echo "Exporting full Linux version"
 echo "###"
 #LINUX_OUTPUT_DIR="$OUTPUT_PATH/$SAFE_PROJECT_NAME/$COMMIT_HASH/linux/full"
 #LINUX_PATH="$LINUX_OUTPUT_DIR/${SAFE_PROJECT_NAME}_full.x86_64"
 #mkdir -p "$LINUX_OUTPUT_DIR"
 
-"$GODOT_PATH" --path "$CLONED_PROJECT_PATH" --headless --quit --export-release "Linux" #"$LINUX_PATH"
-
-exit 1
+"$GODOT_PATH" --path "$CLONED_PROJECT_PATH" --headless --quit --export-release "Linux"
 
 # Export Linux demo version
 echo "###"
-echo "Exporting Demo Linux version to $LINUX_DEMO_PATH"
+echo "Exporting Demo Linux version"
 echo "###"
 
 #LINUX_DEMO_OUTPUT_DIR="$OUTPUT_PATH/$SAFE_PROJECT_NAME/$COMMIT_HASH/linux/demo"
 #LINUX_DEMO_PATH="$LINUX_DEMO_OUTPUT_DIR/${SAFE_PROJECT_NAME}_demo.x86_64"
 #mkdir -p "$LINUX_DEMO_OUTPUT_DIR"
 
-"$GODOT_PATH" --headless --path "$CLONED_PROJECT_PATH" --export-release "Linux Demo" #"$LINUX_DEMO_PATH"
+"$GODOT_PATH" --headless --path "$CLONED_PROJECT_PATH" --export-release "Linux Demo"
 
 # Export Windows full version
 echo "###"
-echo "Exporting full Windows version to $WINDOWS_PATH"
+echo "Exporting full Windows version"
 echo "###"
 #WINDOWS_OUTPUT_DIR="$OUTPUT_PATH/$SAFE_PROJECT_NAME/$COMMIT_HASH/windows/full"
 #WINDOWS_PATH="$WINDOWS_OUTPUT_DIR/${SAFE_PROJECT_NAME}_full.exe"
 #mkdir -p "$WINDOWS_OUTPUT_DIR"
 
-"$GODOT_PATH" --headless --path "$CLONED_PROJECT_PATH" --export-release "Windows" #"$WINDOWS_PATH"
+"$GODOT_PATH" --headless --path "$CLONED_PROJECT_PATH" --export-release "Windows"
 
 # Export Windows Demo version
 echo "###"
-echo "Exporting Demo Windows version to $WINDOWS_DEMO_PATH"
+echo "Exporting Demo Windows version"
 echo "###"
 #WINDOWS_DEMO_OUTPUT_DIR="$OUTPUT_PATH/$SAFE_PROJECT_NAME/$COMMIT_HASH/windows/demo"
 #WINDOWS_DEMO_PATH="$WINDOWS_DEMO_OUTPUT_DIR/${SAFE_PROJECT_NAME}_demo.exe"
 #mkdir -p "$WINDOWS_DEMO_OUTPUT_DIR"
 
-"$GODOT_PATH" --headless --path "$CLONED_PROJECT_PATH"  --export-release "Windows Demo" #"$WINDOWS_DEMO_PATH"
+"$GODOT_PATH" --headless --path "$CLONED_PROJECT_PATH"  --export-release "Windows Demo"
