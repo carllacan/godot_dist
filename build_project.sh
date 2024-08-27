@@ -28,7 +28,8 @@ fi
 
 ### Get configuration from JSON file
 
-CONFIG_FILE_PATH="$PROJECT_PATH/dist/godot_dist.json"
+CONFIG_FILE_DIR="$PROJECT_PATH/dist"
+CONFIG_FILE_PATH="$CONFIG_FILE_DIR/godot_dist.json"
 
 ## Path to repo
 
@@ -38,15 +39,15 @@ if [[ -z "$REPO_REL_PATH" && -f "$CONFIG_FILE_PATH" ]]; then
     REPO_REL_PATH=$(grep -oP '(?<="repo_path": ")[^"]*' "$CONFIG_FILE_PATH")
 fi
 
-# If REPO_REL_PATH is still empty, set it to ".." by default
+# If REPO_REL_PATH is still empty, set it to "." by default
 REPO_REL_PATH="${REPO_REL_PATH:-..}"
 
-# Create REPO_PATH by concatenating PROJECT_PATH and REPO_REL_PATH
-REPO_PATH="$PROJECT_PATH/$REPO_REL_PATH"
+# Create REPO_PATH by concatenating CONFIG_FILE_PATH and REPO_REL_PATH
+REPO_PATH="$CONFIG_FILE_DIR/$REPO_REL_PATH"
 
 # Check that there is a git repo in REPO_PATH
 if [ ! -d "$REPO_PATH/.git" ]; then
-    echo "Error: No git repository found in $REPO_PATH."
+    echo "Error: No git repository found in ''$REPO_PATH'"
     exit 1
 fi
 
@@ -118,45 +119,32 @@ echo "Building project $PROJECT_NAME from $CLONED_PROJECT_PATH using $GODOT_PATH
 echo "###"
 
 echo "Making sure resources are imported"
-$GODOT_PATH --path "$CLONED_PROJECT_PATH" --import --quit --verbose
+#$GODOT_PATH --path "$CLONED_PROJECT_PATH" --import --quit --verbose
 
 # Export Linux full version
 echo "###"
 echo "Exporting full Linux version"
 echo "###"
-#LINUX_OUTPUT_DIR="$OUTPUT_PATH/$SAFE_PROJECT_NAME/$COMMIT_HASH/linux/full"
-#LINUX_PATH="$LINUX_OUTPUT_DIR/${SAFE_PROJECT_NAME}_full.x86_64"
-#mkdir -p "$LINUX_OUTPUT_DIR"
 
-"$GODOT_PATH" --path "$CLONED_PROJECT_PATH" --headless --quit --export-release "Linux"
+"$GODOT_PATH" --headless --no-window --path "$CLONED_PROJECT_PATH" --export "Linux"  --quit
 
 # Export Linux demo version
 echo "###"
 echo "Exporting Demo Linux version"
 echo "###"
 
-#LINUX_DEMO_OUTPUT_DIR="$OUTPUT_PATH/$SAFE_PROJECT_NAME/$COMMIT_HASH/linux/demo"
-#LINUX_DEMO_PATH="$LINUX_DEMO_OUTPUT_DIR/${SAFE_PROJECT_NAME}_demo.x86_64"
-#mkdir -p "$LINUX_DEMO_OUTPUT_DIR"
-
-"$GODOT_PATH" --headless --path "$CLONED_PROJECT_PATH" --export-release "Linux Demo"
+"$GODOT_PATH" --headless --no-window --path "$CLONED_PROJECT_PATH" --export "Linux Demo"  --quit
 
 # Export Windows full version
 echo "###"
 echo "Exporting full Windows version"
 echo "###"
-#WINDOWS_OUTPUT_DIR="$OUTPUT_PATH/$SAFE_PROJECT_NAME/$COMMIT_HASH/windows/full"
-#WINDOWS_PATH="$WINDOWS_OUTPUT_DIR/${SAFE_PROJECT_NAME}_full.exe"
-#mkdir -p "$WINDOWS_OUTPUT_DIR"
 
-"$GODOT_PATH" --headless --path "$CLONED_PROJECT_PATH" --export-release "Windows"
+"$GODOT_PATH" --headless --no-window --path "$CLONED_PROJECT_PATH" --export "Windows"  --quit
 
 # Export Windows Demo version
 echo "###"
 echo "Exporting Demo Windows version"
 echo "###"
-#WINDOWS_DEMO_OUTPUT_DIR="$OUTPUT_PATH/$SAFE_PROJECT_NAME/$COMMIT_HASH/windows/demo"
-#WINDOWS_DEMO_PATH="$WINDOWS_DEMO_OUTPUT_DIR/${SAFE_PROJECT_NAME}_demo.exe"
-#mkdir -p "$WINDOWS_DEMO_OUTPUT_DIR"
 
-"$GODOT_PATH" --headless --path "$CLONED_PROJECT_PATH"  --export-release "Windows Demo"
+"$GODOT_PATH" --headless --no-window --path "$CLONED_PROJECT_PATH" --export "Windows Demo"  --quit
